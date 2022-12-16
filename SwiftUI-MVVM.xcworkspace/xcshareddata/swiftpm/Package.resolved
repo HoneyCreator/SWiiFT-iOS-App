@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "faswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mattmaddux/FASwiftUI.git",
+      "state" : {
+        "revision" : "95828fdcd194b6d295e4d2b1a61ea480c9609f0e",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "sendbird-chat-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sendbird/sendbird-chat-ios-spm",
+      "state" : {
+        "revision" : "88ef140fece207dc92196ce5c7d39f0eab5ee9db",
+        "version" : "3.1.35"
+      }
+    },
+    {
+      "identity" : "sendbird-uikit-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sendbird/sendbird-uikit-ios-spm.git",
+      "state" : {
+        "branch" : "main-v2",
+        "revision" : "e07fddc20bcebb9c4365fdf6911cd24faa5a5513"
+      }
+    },
+    {
+      "identity" : "swiftuifonticon",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/huybuidac/SwiftUIFontIcon",
+      "state" : {
+        "revision" : "4f170fbf443d985ae518a14a12ec8194ec6b08eb",
+        "version" : "2.1.0"
+      }
+    }
+  ],
+  "version" : 2
+}

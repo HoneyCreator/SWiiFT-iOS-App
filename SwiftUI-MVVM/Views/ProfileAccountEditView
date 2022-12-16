@@ -1,0 +1,316 @@
+//
+//  ProfileAccountEditView.swift
+//  SwiftUI-MVVM
+//
+//  Created by Rome on 11/20/22.
+//  Copyright © 2022 Yusuke Kita. All rights reserved.
+//
+
+import Foundation
+import SwiftUI
+import SwiftUIFontIcon
+
+struct ProfileAccountEditView: View {
+    static var uniqueKey: String {
+        UUID().uuidString
+    }
+    
+    static let options: [DropdownOption] = [
+        DropdownOption(key: uniqueKey, value: "Male"),
+        DropdownOption(key: uniqueKey, value: "Female"),
+    ]
+    
+    @State private var selectionProfileView: Int? = nil
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
+    @State private var age: String = ""
+    @State private var gender = DropdownOption(key: uniqueKey, value: "Male")
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var backButton : some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            FontIcon
+                .text(.materialIcon(code: .arrow_back), fontsize: 33)
+                .foregroundColor(Color.white.opacity(0.4))
+        }
+    }
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 0.0) {
+                ScrollView {
+                    VStack {
+                        HStack {
+                            Text("Edit Account")
+                                .foregroundColor(Color.white)
+                                .fontWeight(.bold)
+                                .font(.system(size: 28))
+                                .padding(.top, 30)
+                        }
+                        .frame(width: UIScreen.main.bounds.width, alignment: .top)
+                        .background(Color.black)
+                        .padding(.top, 20)
+                        .zIndex(1)
+                        
+                        VStack() {
+                            Group {
+                                HStack() {
+                                    Text("Full Name")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 50, alignment: .leading)
+                                
+                                VStack() {
+                                    ZStack(alignment: .leading) {
+                                        if firstName.isEmpty {
+                                            Text("First Name")
+                                            .font(.system(size: 24))
+                                            .foregroundColor(Color.white.opacity(0.5))
+                                        }
+                                        TextField("", text: $firstName)
+                                            .foregroundColor(Color.white)
+                                            .autocapitalization(.none)
+                                            .font(.system(size: 24))
+                                    }
+                                    .frame(maxWidth: UIScreen.main.bounds.width - 70)
+                                    .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
+                                    .background(Color.white.opacity(0.15))
+                                    .cornerRadius(50)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 50)
+                                            .stroke(Color.white.opacity(0.15), lineWidth: 1)
+                                    )
+                                }
+                                .padding(.top, 5)
+                                
+                                VStack() {
+                                    ZStack(alignment: .leading) {
+                                        if lastName.isEmpty {
+                                            Text("Last Name")
+                                            .font(.system(size: 24))
+                                            .foregroundColor(Color.white.opacity(0.5))
+                                        }
+                                        TextField("", text: $lastName)
+                                            .foregroundColor(Color.white)
+                                            .autocapitalization(.none)
+                                            .font(.system(size: 24))
+                                    }
+                                    .frame(maxWidth: UIScreen.main.bounds.width - 70)
+                                    .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
+                                    .background(Color.white.opacity(0.15))
+                                    .cornerRadius(50)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 50)
+                                            .stroke(Color.white.opacity(0.15), lineWidth: 1)
+                                    )
+                                }
+                                .padding(.top, 10)
+                                
+                                HStack() {
+                                    Text("Email")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 50, alignment: .leading)
+                                .padding(.top, 40)
+                                
+                                HStack() {
+                                    Text("Email cannot be edited in SWiiFT Beta.")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 20))
+                                        .fontWeight(.medium)
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 50, alignment: .leading)
+                                .padding(.top, 5)
+                                
+                                HStack() {
+                                    Text("Age")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 50, alignment: .leading)
+                                .padding(.top, 40)
+                                
+                                VStack() {
+                                    ZStack(alignment: .leading) {
+                                        if age.isEmpty {
+                                            Text("Enter your age")
+                                            .font(.system(size: 24))
+                                            .foregroundColor(Color.white.opacity(0.5))
+                                        }
+                                        TextField("", text: $age)
+                                            .foregroundColor(Color.white)
+                                            .autocapitalization(.none)
+                                            .font(.system(size: 24))
+                                            .keyboardType(.decimalPad)
+                                    }
+                                    .frame(maxWidth: UIScreen.main.bounds.width - 70)
+                                    .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
+                                    .background(Color.white.opacity(0.15))
+                                    .cornerRadius(50)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 50)
+                                            .stroke(Color.white.opacity(0.15), lineWidth: 1)
+                                    )
+                                }
+                                .padding(.top, 10)
+                                
+                                HStack() {
+                                    Text("Gender")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 50, alignment: .leading)
+                                .padding(.top, 40)
+                                
+                                VStack() {
+                                    DropdownSelector(
+                                        placeholder: "Select Gender",
+                                        options: ProfileAccountSettingsView.options,
+                                        onOptionSelected: { option in
+                                            self.gender = option
+                                    })
+                                    .padding(.horizontal)
+                                }
+                                .padding(.top, 10)
+                                .zIndex(1)
+                                
+                                HStack() {
+                                    Text("Country of Origin")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 50, alignment: .leading)
+                                .padding(.top, 40)
+                                
+                                VStack() {
+                                    ZStack(alignment: .leading) {
+                                        FontIcon
+                                            .text(.materialIcon(code: .search), fontsize: 33)
+                                            .foregroundColor(Color.white.opacity(0.4))
+                                        if industryName.isEmpty {
+                                            Text("Industry")
+                                            .font(.system(size: 24))
+                                            .foregroundColor(Color.white.opacity(0.5))
+                                            .padding(.leading, 40)
+                                            .padding(.bottom, 5)
+                                        }
+                                        TextField("", text: $industryName, onEditingChanged: {
+                                            self.industryInput = $0 // true
+                                        }, onCommit: {
+                                            self.output = self.industryName
+                                        })
+                                            .foregroundColor(Color.white)
+                                            .autocapitalization(.none)
+                                            .font(.system(size: 24))
+                                            .keyboardType(.decimalPad)
+                                            .padding(.leading, 40)
+                                            .padding(.bottom, 5)
+                                    }
+                                    .frame(maxWidth: UIScreen.main.bounds.width - 50)
+                                    .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 10))
+                                    .background(Color.white.opacity(0.15))
+                                    .cornerRadius(50)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 50)
+                                            .stroke(Color.white.opacity(0.15), lineWidth: 1)
+                                    )
+                                    .overlay(
+                                        ScrollView {
+                                            VStack {
+                                                if self.industryInput {
+                                                    ForEach(states, id: \.self) {(state: String) in
+                                                        Group {
+                                                            if state.contains(industryName) {
+                                                                Button(action: {
+                                                                    self.industryName = state
+                                                                    self.industryInput = false
+                                                                }) {
+                                                                    Text(state)
+                                                                        .frame(width: UIScreen.main.bounds.width - 90, alignment: .leading)
+                                                                        .foregroundColor(Color.black)
+                                                                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 0, trailing: 20))
+                                                                        .font(.system(size: 22))
+                                                                }
+                                                                Divider()
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            .background(Color.white)
+                                        }
+                                        .cornerRadius(10)
+                                        .frame(width: UIScreen.main.bounds.width - 90, height: 170)
+                                        .padding(.top, 80), alignment: .top
+                                    )
+                                }
+                                .padding(.top, 10)
+                                .zIndex(1)
+                            }
+                            
+                            HStack() {
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 50, height: 5)
+                            .background(Color.hDividerColor)
+                            .cornerRadius(100)
+                            .padding(.top, 10)
+                        }
+                        .padding(.top, 50)
+                    }
+                    
+                    VStack() {
+                        Button(action: {
+                            print("SUBMIT for Profile Picture Setup")
+                        }) {
+                            HStack() {
+                                Text("SAVE")
+                                    .fontWeight(.medium)
+                                    .frame(minWidth: 0, maxWidth: .infinity)
+                                    .font(.system(size: 22))
+                                    .foregroundColor(Color.white)
+                            }
+                            .padding(.vertical, 15)
+                            .background(Color.globalButtonSecondColor) // If you have this
+                            .cornerRadius(40)
+                            .frame(maxWidth: UIScreen.main.bounds.size.width - 50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 40)
+                                    .stroke(Color.white, lineWidth: 3)
+                            )
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 50)
+                    .padding(.top, 20)
+                    .padding(.bottom, 50)
+                }
+                .padding(EdgeInsets(top: 0, leading: 30, bottom: 30, trailing: 30))
+                .background(Color.black)
+                .background(NavigationConfigurator { navigationConfigurator in
+                    navigationConfigurator.hidesBarsOnSwipe = true
+                })
+            }
+            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
+            .edgesIgnoringSafeArea(.all)
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backButton)
+    }
+}
+
+#if DEBUG
+struct ProfileAccountEditView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileAccountEditView()
+    }
+}
+#endif
